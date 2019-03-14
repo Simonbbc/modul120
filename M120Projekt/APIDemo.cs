@@ -9,23 +9,24 @@ namespace M120Projekt
 {
     static class APIDemo
     {
-        #region KlasseA
+        #region Userstory
         // Create
         public static void DemoACreate()
         {
             Debug.Print("--- DemoACreate ---");
-            // KlasseA
-            Data.KlasseA klasseA1 = new Data.KlasseA();
-            klasseA1.TextAttribut = "Artikel 1";
-            klasseA1.DatumAttribut = DateTime.Today;
-            Int64 klasseA1Id = klasseA1.Erstellen();
-            Debug.Print("Artikel erstellt mit Id:" + klasseA1Id);
+            // Userstory
+            Data.Userstory userstory = new Data.Userstory();
+            userstory.Title = "Artikel 1";
+            userstory.Text = "Something";
+            userstory.CreatedAt = DateTime.Today;
+            Int64 userstoryId = userstory.Erstellen();
+            Debug.Print("Artikel erstellt mit Id:" + userstoryId);
         }
         public static void DemoACreateKurz()
         {
-            Data.KlasseA klasseA2 = new Data.KlasseA { TextAttribut = "Artikel 2", BooleanAttribut = true, DatumAttribut = DateTime.Today };
-            Int64 klasseA2Id = klasseA2.Erstellen();
-            Debug.Print("Artikel erstellt mit Id:" + klasseA2Id);
+            Data.Userstory userstory2 = new Data.Userstory { Title = "Artikel 2", CreatedAt = DateTime.Today, Text = "Something2" };
+            Int64 userstory2Id = userstory2.Erstellen();
+            Debug.Print("Artikel erstellt mit Id:" + userstory2Id);
         }
 
         // Read
@@ -33,25 +34,25 @@ namespace M120Projekt
         {
             Debug.Print("--- DemoARead ---");
             // Demo liest alle
-            foreach (Data.KlasseA klasseA in Data.KlasseA.LesenAlle())
+            foreach (Data.Userstory userstory in Data.Userstory.LesenAlle())
             {
-                Debug.Print("Artikel Id:" + klasseA.KlasseAId + " Name:" + klasseA.TextAttribut);
+                Debug.Print("Artikel Id:" + userstory.UserstoryId + " Name:" + userstory.Title);
             }
         }
         // Update
         public static void DemoAUpdate()
         {
             Debug.Print("--- DemoAUpdate ---");
-            // KlasseA ändert Attribute
-            Data.KlasseA klasseA1 = Data.KlasseA.LesenID(1);
-            klasseA1.TextAttribut = "Artikel 1 nach Update";
-            klasseA1.Aktualisieren();
+            // Userstory ändert Attribute
+            Data.Userstory userstory = Data.Userstory.LesenFirst();
+            userstory.Title = "Artikel 1 nach Update";
+            userstory.Aktualisieren();
         }
         // Delete
         public static void DemoADelete()
         {
             Debug.Print("--- DemoADelete ---");
-            Data.KlasseA.LesenID(1).Loeschen();
+            Data.Userstory.LesenFirst().Loeschen();
             Debug.Print("Artikel mit Id 1 gelöscht");
         }
         #endregion
