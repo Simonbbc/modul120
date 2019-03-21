@@ -19,6 +19,14 @@ namespace M120Projekt.Data
         [Required]
         public String Text { get; set; }
         [Required]
+        public Boolean ShowInBacklog { get; set; }
+        [Required]
+        public String DefinitionOfDone { get; set; }
+        [Required]
+        public Int64 StoryPoints { get; set; }
+        [Required]
+        public Int64 Phase { get; set; }
+        [Required]
         public DateTime CreatedAt { get; set; }
         #endregion
         #region Applikationsschicht
@@ -55,6 +63,7 @@ namespace M120Projekt.Data
         {
             if (this.Title == null || this.Title == "") this.Title = "leer";
             if (this.Text == null) this.Text = "leer";
+            if (this.DefinitionOfDone == null) this.DefinitionOfDone = "leer";
             Data.Global.context.Userstory.Add(this);
             Data.Global.context.SaveChanges();
             return this.UserstoryId;
