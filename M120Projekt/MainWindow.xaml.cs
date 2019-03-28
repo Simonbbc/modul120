@@ -27,12 +27,12 @@ namespace M120Projekt
             // Wichtig!
             Data.Global.context = new Data.Context();
             // Aufruf diverse APIDemo Methoden
-            APIDemo.DemoACreate();
+            /*APIDemo.DemoACreate();
             APIDemo.DemoACreateKurz();
             APIDemo.DemoARead();
             APIDemo.DemoAUpdate();
             APIDemo.DemoARead();
-            APIDemo.DemoADelete();
+            APIDemo.DemoADelete();*/
         }
     }
 }
