@@ -15,13 +15,19 @@ using System.Windows.Shapes;
 namespace M120Projekt.B1
 {
     /// <summary>
-    /// Interaktionslogik für CreateOverview.xaml
+    /// Interaktionslogik für Window1.xaml
     /// </summary>
-    public partial class CreateOverview : UserControl
+    public partial class Window1 : UserControl
     {
-        public CreateOverview()
+        public Window1()
         {
             InitializeComponent();
+        }
+
+        private void ButtonCreate_Click(object sender, RoutedEventArgs e)
+        {
+            CreateOverview createView = new CreateOverview();
+            this.Overview.Content = createView;
         }
     }
 }
