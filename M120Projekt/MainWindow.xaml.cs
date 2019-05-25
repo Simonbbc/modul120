@@ -25,7 +25,7 @@ namespace M120Projekt
         {
             InitializeComponent();
             // Wichtig!
-            Data.Global.context = new Data.Context();
+            
             // Aufruf diverse APIDemo Methoden
             /*APIDemo.DemoACreate();
             APIDemo.DemoACreateKurz();

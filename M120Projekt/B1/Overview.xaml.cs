@@ -17,7 +17,7 @@ namespace M120Projekt.B1
     /// <summary>
     /// Interaktionslogik für Window1.xaml
     /// </summary>
-    public partial class Window1 : UserControl
+    public partial class Window1 : Window
     {
         public Window1()
         {
@@ -26,6 +26,14 @@ namespace M120Projekt.B1
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
+            //Data.Global.context = new Data.Context();
+            // Aufruf diverse APIDemo Methoden
+            //APIDemo.DemoACreate();
+            //APIDemo.DemoACreateKurz();
+            //APIDemo.DemoARead();
+            //APIDemo.DemoAUpdate();
+            //APIDemo.DemoARead();
+            //APIDemo.DemoADelete();
             CreateOverview createView = new CreateOverview();
             this.Overview.Content = createView;
         }

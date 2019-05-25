@@ -25,7 +25,7 @@ namespace M120Projekt.Data
         [Required]
         public Int64 StoryPoints { get; set; }
         [Required]
-        public Int64 Phase { get; set; }
+        public String Phase { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
         #endregion
