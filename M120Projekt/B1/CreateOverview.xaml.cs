@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using M120Projekt.Data;
+using System.Text.RegularExpressions;
 
 
 namespace M120Projekt.B1
@@ -24,6 +25,8 @@ namespace M120Projekt.B1
     {
         private Userstory us = new Userstory();
 
+        public event EventHandler Back;
+
         public CreateOverview()
         {
             InitializeComponent();
@@ -31,16 +34,14 @@ namespace M120Projekt.B1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Data.Global.context = new Data.Context();
             if(this.Check())
             {
                 this.FülleFelder();
                 us.Erstellen();
                 MessageBox.Show("Success");
-            } else
-            {
-                MessageBox.Show("Please fill out all felds");
-            }
+                Global.Context.SaveChanges();
+                Back.Invoke(this, EventArgs.Empty);
+            } 
             
         }
 
@@ -50,29 +51,39 @@ namespace M120Projekt.B1
             us.Text = this.Story.Text;
             us.DefinitionOfDone = this.DOD.Text;
             us.Phase = this.phasenBox.SelectedValue.ToString();
-            us.CreatedAt = DateTime.Today;
+            us.CreatedAt = Date.SelectedDate ?? DateTime.Today;
+            us.ShowInBacklog = Show.IsChecked ?? false;
+            us.StoryPoints = Convert.ToInt32(StoryPoints.Text);
         }
 
         private bool Check()
         {
             if (this.Title.Text == "")
             {
+                MessageBox.Show("Please fill out the Title Field");
                 return false;
             }
-            if(this.Story.Text == "")
+            if(String.IsNullOrEmpty(this.Story.Text))
             {
+                MessageBox.Show("Please fill out the Story Field");
                 return false;
             }
-            if(this.DOD.Text == "")
+            if(String.IsNullOrEmpty(this.DOD.Text))
             {
+                MessageBox.Show("Please fill out the Definition of Done Field");
                 return false;
             }
-            if(this.StoryPoints.Text == "")
+            if (String.IsNullOrEmpty(this.StoryPoints.Text) || !Regex.IsMatch(this.StoryPoints.Text, @"^[0-9]*$"))
             {
+                MessageBox.Show("Please enter a valid number (0-100)");
                 return false;
             }
             return true;
         }
-            
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Back.Invoke(sender, EventArgs.Empty);
+        }
     }
 }

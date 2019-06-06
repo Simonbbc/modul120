@@ -41,43 +41,43 @@ namespace M120Projekt.Data
         }
         public static IEnumerable<Data.Userstory> LesenAlle()
         {
-            return (from record in Data.Global.context.Userstory select record);
+            return (from record in Data.Global.Context.Userstory select record);
         }
         public static Data.Userstory LesenID(Int64 userstoryId)
         {
-            return (from record in Data.Global.context.Userstory where record.UserstoryId == userstoryId select record).FirstOrDefault();
+            return (from record in Data.Global.Context.Userstory where record.UserstoryId == userstoryId select record).FirstOrDefault();
         }
         public static Data.Userstory LesenFirst()
         {
-            return (from record in Data.Global.context.Userstory select record).FirstOrDefault();
+            return (from record in Data.Global.Context.Userstory select record).FirstOrDefault();
         }
         public static IEnumerable<Data.Userstory> LesenAttributGleich(String suchbegriff)
         {
-            return (from record in Data.Global.context.Userstory where record.Title == suchbegriff select record);
+            return (from record in Data.Global.Context.Userstory where record.Title == suchbegriff select record);
         }
         public static IEnumerable<Data.Userstory> LesenAttributWie(String suchbegriff)
         {
-            return (from record in Data.Global.context.Userstory where record.Title.Contains(suchbegriff) select record);
+            return (from record in Data.Global.Context.Userstory where record.Title.Contains(suchbegriff) select record);
         }
         public Int64 Erstellen()
         {
             if (this.Title == null || this.Title == "") this.Title = "leer";
             if (this.Text == null) this.Text = "leer";
             if (this.DefinitionOfDone == null) this.DefinitionOfDone = "leer";
-            Data.Global.context.Userstory.Add(this);
-            Data.Global.context.SaveChanges();
+            Data.Global.Context.Userstory.Add(this);
+            Data.Global.Context.SaveChanges();
             return this.UserstoryId;
         }
         public Int64 Aktualisieren()
         {
-            Data.Global.context.Entry(this).State = System.Data.Entity.EntityState.Modified;
-            Data.Global.context.SaveChanges();
+            Data.Global.Context.Entry(this).State = System.Data.Entity.EntityState.Modified;
+            Data.Global.Context.SaveChanges();
             return this.UserstoryId;
         }
         public void Loeschen()
         {
-            Data.Global.context.Entry(this).State = System.Data.Entity.EntityState.Deleted;
-            Data.Global.context.SaveChanges();
+            Data.Global.Context.Entry(this).State = System.Data.Entity.EntityState.Deleted;
+            Data.Global.Context.SaveChanges();
         }
         public override string ToString()
         {

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using M120Projekt.B1;
 
 namespace M120Projekt
 {
@@ -21,18 +22,30 @@ namespace M120Projekt
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Window1 _overview;
+        private CreateOverview _createOverview;
+
         public MainWindow()
         {
+            _overview = new Window1();
+            _createOverview = new CreateOverview();
+            _overview.CreateClicked += CreateClicked;
+            _createOverview.Back += BackClicked;
             InitializeComponent();
-            // Wichtig!
-            
-            // Aufruf diverse APIDemo Methoden
-            /*APIDemo.DemoACreate();
-            APIDemo.DemoACreateKurz();
-            APIDemo.DemoARead();
-            APIDemo.DemoAUpdate();
-            APIDemo.DemoARead();
-            APIDemo.DemoADelete();*/
+            Content.Children.Add(_overview);
+        }
+
+        public void CreateClicked(object sender, EventArgs e)
+        {
+            Content.Children.Clear();
+            Content.Children.Add(_createOverview);
+        }
+
+        public void BackClicked(object sender, EventArgs e)
+        {
+            _overview.UpdateList();
+            Content.Children.Clear();
+            Content.Children.Add(_overview);
         }
     }
 }
