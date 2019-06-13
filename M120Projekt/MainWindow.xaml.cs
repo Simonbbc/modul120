@@ -24,13 +24,17 @@ namespace M120Projekt
     {
         private Window1 _overview;
         private CreateOverview _createOverview;
+        private updateView _updateView;
 
         public MainWindow()
         {
             _overview = new Window1();
             _createOverview = new CreateOverview();
+            _updateView = new updateView();
             _overview.CreateClicked += CreateClicked;
             _createOverview.Back += BackClicked;
+            _updateView.Back += BackClicked;
+            _overview.ItemClicked += ItemClicked;
             InitializeComponent();
             Content.Children.Add(_overview);
         }
@@ -46,6 +50,13 @@ namespace M120Projekt
             _overview.UpdateList();
             Content.Children.Clear();
             Content.Children.Add(_overview);
+        }
+
+        public void ItemClicked(object sender, EventArgs e)
+        {
+            Content.Children.Clear();
+            Content.Children.Add(_updateView);
+            _updateView.ShowItem((long)sender);
         }
     }
 }

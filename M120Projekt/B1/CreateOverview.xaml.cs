@@ -41,6 +41,7 @@ namespace M120Projekt.B1
                 MessageBox.Show("Success");
                 Global.Context.SaveChanges();
                 Back.Invoke(this, EventArgs.Empty);
+                clear();
             } 
             
         }
@@ -50,7 +51,7 @@ namespace M120Projekt.B1
             us.Title = this.Title.Text;
             us.Text = this.Story.Text;
             us.DefinitionOfDone = this.DOD.Text;
-            us.Phase = this.phasenBox.SelectedValue.ToString();
+            us.Phase = this.phasenBox.Text;
             us.CreatedAt = Date.SelectedDate ?? DateTime.Today;
             us.ShowInBacklog = Show.IsChecked ?? false;
             us.StoryPoints = Convert.ToInt32(StoryPoints.Text);
@@ -79,6 +80,15 @@ namespace M120Projekt.B1
                 return false;
             }
             return true;
+        }
+
+        private void clear() {
+            this.Title.Text = "";
+            this.Story.Text = "";
+            this.DOD.Text = "";
+            this.StoryPoints.Text = "";
+            this.Date.Text = "";
+            this.Show.IsChecked = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

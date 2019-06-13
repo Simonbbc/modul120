@@ -22,14 +22,15 @@ namespace M120Projekt.B1
     public partial class Window1 : UserControl
     {
         public event EventHandler CreateClicked;
-        private ObservableCollection<Userstory> userStoryList = new ObservableCollection<Userstory>();
+        public event EventHandler ItemClicked;
+        private ObservableCollection<Userstory> userStoryList;
 
         public Window1()
         {
             InitializeComponent();
-            liste.ItemsSource = userStoryList;
+            userStoryList = new ObservableCollection<Userstory>();
+            auswahlListe.ItemsSource = userStoryList;
             UpdateList();
-            buttonCreate_Copy.Click += BtnSave;
         }
 
         public void UpdateList() {
@@ -46,5 +47,31 @@ namespace M120Projekt.B1
         }
 
         private void BtnSave(object o, RoutedEventArgs e) => Global.Context.SaveChanges();
+
+        private void Liste_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            auswahlgeaendert();
+        }
+
+        private void Liste_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (auswahlListe.SelectedItem != null)
+            {
+                Userstory auswahl = (Userstory)auswahlListe.SelectedItem;
+                ItemClicked.Invoke(auswahl.UserstoryId, EventArgs.Empty);
+            }
+        }
+
+        private void datenVorbereiten()
+        {
+            userStoryList = new ObservableCollection<Userstory>(Userstory.LesenAlle());
+        }
+        private void auswahlgeaendert()
+        {
+            if (auswahlListe.SelectedItem != null)
+            {
+                Userstory auswahl = (Userstory)auswahlListe.SelectedItem;
+            }
+        }
     }
 }
