@@ -22,7 +22,7 @@
                     <RowDefinition Height="80px"/>
                     <RowDefinition Height="80px"/>
                 </Grid.RowDefinitions>
-                <Label FontFamily="Arial" FontWeight="Bold" Foreground="Black" Grid.Row="0" FontSize="32px" HorizontalAlignment="Center" Margin="0 20px 0 0">UserStory Übersicht</Label>
+                <Label FontFamily="Arial" FontWeight="Bold" Foreground="Black" Grid.Row="0" FontSize="32px" HorizontalAlignment="Center" Margin="0 20px 0 0">UserStory Erstellen</Label>
                 <Label Margin="70px 20px 100px 20px" Content="Title:" FontSize="18px" Grid.Column="0" Grid.Row="1"></Label>
                 <Label Height="40px" Margin="70px 20px 100px 20px" Content="Userstory:" FontSize="18px" Grid.Column="0" Grid.Row="2"></Label>
                 <Label Margin="70,20,60,20" Content="Definition of Done:" FontSize="18px" Grid.Column="0" Grid.Row="3"></Label>
